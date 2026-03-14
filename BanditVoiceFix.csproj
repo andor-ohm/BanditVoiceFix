@@ -79,6 +79,10 @@
   <ItemGroup>
     <Content Include="SubModule.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="CHANGELOG.md" />
+    <None Include="README.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>set "MODDIR=D:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\BanditVoiceFix"
