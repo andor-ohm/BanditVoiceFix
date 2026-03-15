@@ -12,6 +12,14 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <SkipBannerlordDeploy Condition="'$(SkipBannerlordDeploy)' == ''">false</SkipBannerlordDeploy>
+    <BannerlordModulesDir Condition="'$(BannerlordModulesDir)' == '' and '$(BANNERLORD_MODULES_DIR)' != ''">$(BANNERLORD_MODULES_DIR)</BannerlordModulesDir>
+    <BannerlordModulesDir Condition="'$(BannerlordModulesDir)' == '' and Exists('D:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules')">D:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules</BannerlordModulesDir>
+    <BannerlordModulesDir Condition="'$(BannerlordModulesDir)' == '' and Exists('C:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules')">C:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules</BannerlordModulesDir>
+    <BannerlordModulesDir Condition="'$(BannerlordModulesDir)' == '' and Exists('C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules')">C:\Program Files (x86)\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules</BannerlordModulesDir>
+    <BannerlordModulesDir Condition="'$(BannerlordModulesDir)' == '' and Exists('C:\Program Files\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules')">C:\Program Files\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules</BannerlordModulesDir>
+    <BannerlordBaseDir Condition="'$(BannerlordModulesDir)' != ''">$(BannerlordModulesDir)\..</BannerlordBaseDir>
+    <BannerlordModuleOutputDir Condition="'$(BannerlordModulesDir)' != ''">$(BannerlordModulesDir)\BanditVoiceFix</BannerlordModuleOutputDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,40 +42,40 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.Harmony\bin\Win64_Shipping_Client\0Harmony.dll</HintPath>
+      <HintPath>$(BannerlordModulesDir)\Bannerlord.Harmony\bin\Win64_Shipping_Client\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MCMv5">
-      <HintPath>..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\Bannerlord.MBOptionScreen\bin\Win64_Shipping_Client\MCMv5.dll</HintPath>
+      <HintPath>$(BannerlordModulesDir)\Bannerlord.MBOptionScreen\bin\Win64_Shipping_Client\MCMv5.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="TaleWorlds.CampaignSystem">
-      <HintPath>..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll</HintPath>
+      <HintPath>$(BannerlordBaseDir)\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TaleWorlds.Core">
-      <HintPath>..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Core.dll</HintPath>
+      <HintPath>$(BannerlordBaseDir)\bin\Win64_Shipping_Client\TaleWorlds.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TaleWorlds.Library">
-      <HintPath>..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Library.dll</HintPath>
+      <HintPath>$(BannerlordBaseDir)\bin\Win64_Shipping_Client\TaleWorlds.Library.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TaleWorlds.Localization">
-      <HintPath>..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.Localization.dll</HintPath>
+      <HintPath>$(BannerlordBaseDir)\bin\Win64_Shipping_Client\TaleWorlds.Localization.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TaleWorlds.ModuleManager">
-      <HintPath>..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.ModuleManager.dll</HintPath>
+      <HintPath>$(BannerlordBaseDir)\bin\Win64_Shipping_Client\TaleWorlds.ModuleManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TaleWorlds.MountAndBlade">
-      <HintPath>..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.dll</HintPath>
+      <HintPath>$(BannerlordBaseDir)\bin\Win64_Shipping_Client\TaleWorlds.MountAndBlade.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TaleWorlds.ObjectSystem">
-      <HintPath>..\..\..\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
+      <HintPath>$(BannerlordBaseDir)\bin\Win64_Shipping_Client\TaleWorlds.ObjectSystem.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -84,15 +92,12 @@
     <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>set "MODDIR=D:\Steam\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\BanditVoiceFix"
-
-if not exist "%25MODDIR%25" mkdir "%25MODDIR%25"
-if not exist "%25MODDIR%25\Logs" mkdir "%25MODDIR%25\Logs"
-if not exist "%25MODDIR%25\bin" mkdir "%25MODDIR%25\bin"
-if not exist "%25MODDIR%25\bin\Win64_Shipping_Client" mkdir "%25MODDIR%25\bin\Win64_Shipping_Client"
-
-copy /Y "$(ProjectDir)\SubModule.xml" "%25MODDIR%25\SubModule.xml"
-copy /Y "$(TargetPath)" "%25MODDIR%25\bin\Win64_Shipping_Client\BanditVoiceFix.dll"</PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="DeployToBannerlordModules" AfterTargets="Build" Condition="'$(SkipBannerlordDeploy)' != 'true'">
+    <Error Condition="'$(BannerlordModulesDir)' == ''" Text="Could not find the Bannerlord Modules directory. Set the BANNERLORD_MODULES_DIR environment variable, pass /p:BannerlordModulesDir=...\Modules, or build with /p:SkipBannerlordDeploy=true." />
+    <MakeDir Directories="$(BannerlordModuleOutputDir)" />
+    <MakeDir Directories="$(BannerlordModuleOutputDir)\Logs" />
+    <MakeDir Directories="$(BannerlordModuleOutputDir)\bin\Win64_Shipping_Client" />
+    <Copy SourceFiles="$(ProjectDir)SubModule.xml" DestinationFiles="$(BannerlordModuleOutputDir)\SubModule.xml" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFiles="$(BannerlordModuleOutputDir)\bin\Win64_Shipping_Client\BanditVoiceFix.dll" SkipUnchangedFiles="true" />
+  </Target>
 </Project>
