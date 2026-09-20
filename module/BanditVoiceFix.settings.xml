@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BanditVoiceFix>
+  <!-- Optional detailed diagnostics. Errors always log. Restart the game after changing. -->
+  <EnableDebugLogging>false</EnableDebugLogging>
+</BanditVoiceFix>
