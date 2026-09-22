@@ -8,14 +8,14 @@
 	<Official value="false" />
 
 	<DependedModules>
-		<DependedModule Id="Bannerlord.Harmony" DependentVersion="v2.4.2.248" />
-		<DependedModule Id="Native" DependentVersion="v1.4.8" />
-		<DependedModule Id="SandBoxCore" DependentVersion="v1.4.8" />
-		<DependedModule Id="Sandbox" DependentVersion="v1.4.8" />
-		<DependedModule Id="StoryMode" DependentVersion="v1.4.8" />
+		<DependedModule Id="Bannerlord.Harmony" />
+		<DependedModule Id="Native" />
+		<DependedModule Id="SandBoxCore" />
+		<DependedModule Id="Sandbox" />
+		<DependedModule Id="StoryMode" />
 	</DependedModules>
 	<DependedModuleMetadatas>
-		<DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" version="v2.4.2.248" />
+		<DependedModuleMetadata id="Bannerlord.Harmony" order="LoadBeforeThis" />
 	</DependedModuleMetadatas>
 
 	<SubModules>
